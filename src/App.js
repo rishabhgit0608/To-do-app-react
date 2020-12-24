@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import ListItems from "./List/ListItems.js";
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -28,8 +28,13 @@ class App extends React.Component {
     e.preventDefault();
     const newItem = this.state.currentItem;
     if(newItem.text!=""){
+      const newItems=[...this.state.items,newItem]
       this.setState({
-        items:[...this.state.items,newItem.text]
+        items:newItems,
+        currentItem:{
+          text:'',
+          key:''
+        }
       })
     }
     console.log(this.state.items);
@@ -43,6 +48,7 @@ class App extends React.Component {
           <input onChange={this.handleInput} type="text" placeholder="Enter Work" ></input>
           <button type="submit">ADD</button>
         </form>
+        <ListItems items = {this.state.items}></ListItems>
       </header>
      </div>
     );
