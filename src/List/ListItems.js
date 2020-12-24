@@ -10,7 +10,7 @@ const ListItems = (props) => {
         </div>
     })
     return (
-       <div>{listitems}</div>
+       <div className="allList">{listitems}</div>
     )
 }
 

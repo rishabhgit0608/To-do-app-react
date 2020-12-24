@@ -27,17 +27,15 @@ class App extends React.Component {
   addItem(e){
     e.preventDefault();
     const newItem = this.state.currentItem;
-    if(newItem.text!=""){
-      const newItems=[...this.state.items,newItem]
+    if(newItem.text!==""){
       this.setState({
-        items:newItems,
+        items:[...this.state.items,newItem],
         currentItem:{
           text:'',
           key:''
         }
       })
     }
-    console.log(this.state.items);
   }
 
   render() {
@@ -54,6 +52,5 @@ class App extends React.Component {
     );
   }
 }
-
 
 export default App;
