@@ -1,25 +1,53 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      items:[],
+      currentItem:{
+        text:'',
+        key:''
+      }
+    }
+    this.handleInput = this.handleInput.bind(this);
+    this.addItem = this.addItem.bind(this);
+  }
+
+  handleInput(e){
+    this.setState({
+      currentItem:{
+        text:e.target.value,
+        key:Date.now()
+      }
+    })
+  }
+  addItem(e){
+    e.preventDefault();
+    const newItem = this.state.currentItem;
+    if(newItem.text!=""){
+      this.setState({
+        items:[...this.state.items,newItem.text]
+      })
+    }
+    console.log(this.state.items);
+  }
+
+  render() {
+    return (
+     <div className="App">
+        <header>
+        <form id="todoForm" onSubmit={this.addItem }>
+          <input onChange={this.handleInput} type="text" placeholder="Enter Work" ></input>
+          <button type="submit">ADD</button>
+        </form>
       </header>
-    </div>
-  );
+     </div>
+    );
+  }
 }
+
 
 export default App;
